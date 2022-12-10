@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新活动</title>
+    <link rel="stylesheet" th:href="@{../../lib/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{../../css/seckill_item.css}"/>
+    <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+</head>
+<body>
+    <div th:replace="public/header :: header"></div>
+    <form name="addNewEvent" id="addNewEvent" onsubmit="return addNewEventCheck()" action="addNewEvent" method="post">
+        <table border="1">
+            <tr>
+                <td>活动名称</td>
+                <td><input name="eventName"></td>
+            </tr>
+            <tr>
+                <td>原价</td>
+                <td><input name="eventOriPrice"></td>
+            </tr>
+            <tr>
+                <td>折扣价</td>
+                <td><input name="eventDiscountPrice"></td>
+            </tr>
+            <tr>
+                <td>库存数量</td>
+                <td><input name="eventStockCount"></td>
+            </tr>
+            <tr>
+                <td>开始时间</td>
+                <td><input type="datetime-local" name="eventStartTime"></td>
+            </tr>
+            <tr>
+                <td>结束时间</td>
+                <td><input type="datetime-local" name="eventEndTime"></td>
+            </tr>
+        </table>
+        <button type="submit">添加</button>
+    </form>
+    <div th:replace="public/footer :: footer"></div>
+</body>
+</html>

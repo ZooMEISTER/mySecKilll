@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" th:href="@{../../lib/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{../../css/seckill_item.css}"/>
+    <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+    <script type="text/javascript">
+        function RegisterCheck(){
+            var myForm = document.getElementById("myRegister")
+            var loginName = document.getElementById("username").value
+            var loginPassword = document.getElementById("password").value
+            if(loginName == "" || loginPassword == ""){
+                alert("姓名密码均不能为空")
+                return false;
+            }
+            else if(loginName.length != 11 || loginPassword.length < 6){
+                alert("电话号码格式错误或密码长度少于6位")
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+<div th:replace="public/header :: header"></div>
+
+<form name="myRegister" id="myRegister" onsubmit="return RegisterCheck()" action="try_register" method="post">
+    <table>
+        <tr>
+            <td>请输入用户名：</td>
+            <td><input name="username" id="username" type="text"></td>
+        </tr>
+        <tr>
+            <td>请输入密码：</td>
+            <td><input name="password" id="password" type="password"></td>
+        </tr>
+        <tr>
+            <td>就业状态</td>
+            <td>
+                <label><input name="workcondition" type="radio" value="1">已就业</label>
+                <label><input name="workcondition" type="radio" value="0">无业</label>
+            </td>
+        </tr>
+        <tr>
+            <td>年龄</td>
+            <td><input name="age" type="text" value="18"></td>
+        </tr>
+        <tr>
+            <td>身份证号</td>
+            <td><input name="idcardno" type="text" value="000000000000000000"></td>
+        </tr>
+        <tr>
+            <td>
+                <select name="usertype">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </td>
+            <td><button type="submit">注册</button></td>
+        </tr>
+    </table>
+
+</form>
+
+<div th:replace="public/footer :: footer"></div>
+</body>
+<script type="text/javascript" th:src="@{../../lib/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{../../lib/bootstrap.min.js}"></script>
+</html>

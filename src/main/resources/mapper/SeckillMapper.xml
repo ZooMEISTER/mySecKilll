@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tycoding.mapper.SeckillMapper">
+
+    <select id="findAll" resultType="Seckill">
+        SELECT * FROM seckill
+    </select>
+
+    <select id="findAllUsers" resultType="UserBean">
+        SELECT * FROM usertable
+    </select>
+
+    <insert id="insertUser">
+        INSERT ignore INTO usertable(username, password, usertype, age, idcardno, workcondition)
+        VALUES (#{regPhone}, #{regPassword}, #{regIdentity}, #{regAge}, #{regIdCardNo}, #{regWorkCondition})
+    </insert>
+
+    <delete id="delSeckillEvent">
+        DELETE FROM seckill WHERE seckill_id = #{delEventNo}
+    </delete>
+
+    <insert id="addNewSeckillEvent">
+        INSERT ignore INTO seckill(seckill_id, title, price, cost_price, stock_count, start_time, end_time)
+        VALUES (#{newEventNo},#{eventName},#{eventOriPrice},#{eventDiscountPrice},#{eventStockCount},#{newStartTime_TS},#{newEndTime_TS})
+    </insert>
+
+    <select id="findById" resultType="Seckill">
+        SELECT * FROM seckill WHERE seckill_id = #{id}
+    </select>
+
+    <update id="reduceStock">
+        UPDATE seckill
+        SET stock_count = stock_count - 1
+        WHERE seckill_id = #{seckillId}
+        AND start_time &lt;= #{killTime}
+        AND end_time &gt;= #{killTime}
+        AND stock_count &gt; 0
+    </update>
+
+</mapper>
