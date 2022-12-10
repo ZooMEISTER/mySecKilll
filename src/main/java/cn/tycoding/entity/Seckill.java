@@ -49,13 +49,13 @@ public class Seckill implements Serializable {
         this.title = title;
     }
 
-//    public String getImage() {
-//        return image;
-//    }
+    public String getImage() {
+        return image;
+    }
 
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public BigDecimal getPrice() {
         return price;
