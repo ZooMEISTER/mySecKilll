@@ -7,6 +7,50 @@
     <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{../../css/seckill_item.css}"/>
     <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+    <script type="text/javascript">
+        function addNewEventCheck(){
+            var newEventName = document.getElementById("eventName").value
+            var newEventOriPrice = document.getElementById("eventOriPrice").value
+            var newEventDiscountPrice = document.getElementById("eventDiscountPrice").value
+            var newEventStockCount = document.getElementById("eventStockCount").value
+            var newEventStartTime= document.getElementById("eventStartTime").value
+            var newEventEndTime = document.getElementById("eventEndTime").value
+            var newEventAgeLimit = document.getElementById("eventAgeLimit").value
+
+
+            if(newEventName.length == 0){
+                alert("新活动名称不能为空")
+                return false;
+            }
+            else if(newEventOriPrice.length == 0){
+                alert("新活动原价不能为空")
+                return false;
+            }
+            else if(newEventDiscountPrice.length == 0){
+                alert("新活动折扣价不能为空")
+                return false;
+            }
+            else if(newEventStockCount.length == 0){
+                alert("新活动库存不能为空")
+                return false;
+            }
+            else if(newEventStartTime.length == 0){
+                alert("新活动开始时间不能为空")
+                return false;
+            }
+            else if(newEventEndTime.length == 0){
+                alert("新活动结束时间不能为空")
+                return false;
+            }
+            else if(newEventAgeLimit.length == 0){
+                alert("新活动年龄限制不能为空")
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
     <div th:replace="public/header :: header"></div>
@@ -14,27 +58,38 @@
         <table border="1">
             <tr>
                 <td>活动名称</td>
-                <td><input name="eventName"></td>
+                <td><input name="eventName" required></td>
             </tr>
             <tr>
                 <td>原价</td>
-                <td><input name="eventOriPrice"></td>
+                <td><input name="eventOriPrice" required></td>
             </tr>
             <tr>
                 <td>折扣价</td>
-                <td><input name="eventDiscountPrice"></td>
+                <td><input name="eventDiscountPrice" v></td>
             </tr>
             <tr>
                 <td>库存数量</td>
-                <td><input name="eventStockCount"></td>
+                <td><input name="eventStockCount" required></td>
             </tr>
             <tr>
                 <td>开始时间</td>
-                <td><input type="datetime-local" name="eventStartTime"></td>
+                <td><input type="datetime-local" name="eventStartTime" required></td>
             </tr>
             <tr>
                 <td>结束时间</td>
-                <td><input type="datetime-local" name="eventEndTime"></td>
+                <td><input type="datetime-local" name="eventEndTime" required></td>
+            </tr>
+            <tr>
+                <td>年龄要求</td>
+                <td><input name="eventAgeLimit" value="18" required></td>
+            </tr>
+            <tr>
+                <td>工作要求</td>
+                <td>
+                    <label><input type="radio" name="eventWorkLimit" value="1">有工作</label>
+                    <label><input type="radio" name="eventWorkLimit" value="0" checked="checked">无工作</label>
+                </td>
             </tr>
         </table>
         <button type="submit">添加</button>

@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>注册</title>
-    <link rel="stylesheet" th:href="@{../../lib/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/seckill_item.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/seckill_item.css}"/>
+    <link rel="stylesheet" th:href="@{/css/public.css}"/>
+    <script type="text/javascript" th:src="@{/lib/jquery-3.3.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/bootstrap.min.js}"></script>
     <script type="text/javascript">
         function RegisterCheck(){
-            var myForm = document.getElementById("myRegister")
             var loginName = document.getElementById("username").value
             var loginPassword = document.getElementById("password").value
-            if(loginName == "" || loginPassword == ""){
+            var loginAge = document.getElementById("age").value
+            var loginIdcardno = document.getElementById("incardno").value
+
+            if(loginName.length == 0 || loginPassword.length == 0){
                 alert("姓名密码均不能为空")
                 return false;
             }
             else if(loginName.length != 11 || loginPassword.length < 6){
                 alert("电话号码格式错误或密码长度少于6位")
+                return false;
+            }
+            else if(loginAge.length == 0){
+                alert("年龄不能为空")
+                return false;
+            }
+            else if(loginIdcardno.length != 18){
+                alert("身份证格式错误")
                 return false;
             }
             else{
@@ -33,26 +45,26 @@
     <table>
         <tr>
             <td>请输入用户名：</td>
-            <td><input name="username" id="username" type="text"></td>
+            <td><input name="username" id="username" type="text" required></td>
         </tr>
         <tr>
             <td>请输入密码：</td>
-            <td><input name="password" id="password" type="password"></td>
+            <td><input name="password" id="password" type="password" required></td>
         </tr>
         <tr>
             <td>就业状态</td>
             <td>
                 <label><input name="workcondition" type="radio" value="1">已就业</label>
-                <label><input name="workcondition" type="radio" value="0">无业</label>
+                <label><input name="workcondition" type="radio" value="0" checked="checked">无业</label>
             </td>
         </tr>
         <tr>
             <td>年龄</td>
-            <td><input name="age" type="text" value="18"></td>
+            <td><input name="age" id="age" type="text" value="18" required></td>
         </tr>
         <tr>
             <td>身份证号</td>
-            <td><input name="idcardno" type="text" value="000000000000000000"></td>
+            <td><input name="idcardno" id="idcardno" type="text" value="000000000000000000" required></td>
         </tr>
         <tr>
             <td>
@@ -61,7 +73,7 @@
                     <option value="admin">Admin</option>
                 </select>
             </td>
-            <td><button type="submit">注册</button></td>
+            <td><input type="submit" value="注册"></td>
         </tr>
     </table>
 
@@ -69,6 +81,4 @@
 
 <div th:replace="public/footer :: footer"></div>
 </body>
-<script type="text/javascript" th:src="@{../../lib/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/bootstrap.min.js}"></script>
 </html>

@@ -22,12 +22,16 @@
     </delete>
 
     <insert id="addNewSeckillEvent">
-        INSERT ignore INTO seckill(seckill_id, title, price, cost_price, stock_count, start_time, end_time)
-        VALUES (#{newEventNo},#{eventName},#{eventOriPrice},#{eventDiscountPrice},#{eventStockCount},#{newStartTime_TS},#{newEndTime_TS})
+        INSERT ignore INTO seckill(seckill_id, title, price, cost_price, stock_count, start_time, end_time, age_limit, work_limit)
+        VALUES (#{newEventNo},#{eventName},#{eventOriPrice},#{eventDiscountPrice},#{eventStockCount},#{newStartTime_TS},#{newEndTime_TS},#{eventAgeLimit},#{eventWorkLimit})
     </insert>
 
     <select id="findById" resultType="Seckill">
         SELECT * FROM seckill WHERE seckill_id = #{id}
+    </select>
+
+    <select id="findUserByPhone" resultType="UserBean">
+        SELECT * FROM usertable WHERE username = #{userphone}
     </select>
 
     <update id="reduceStock">

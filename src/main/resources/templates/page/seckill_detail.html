@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>秒杀详情页</title>
-    <link rel="stylesheet" th:href="@{../../lib/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/seckill_item.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/seckill_item.css}"/>
+    <link rel="stylesheet" th:href="@{/css/public.css}"/>
 </head>
 <body>
 
@@ -20,11 +20,11 @@
         <div>
             <div class="container">
                 <div class="container">
-                    <div class="fl preview-wrap">
-                        <div id="preview" class="spec-preview">
-                            <span class="jqzoom"><img th:src="${seckill.image}" alt=""/></span>
-                        </div>
-                    </div>
+<!--                    <div class="fl preview-wrap">-->
+<!--                        <div id="preview" class="spec-preview">-->
+<!--                            <span class="jqzoom"><img th:src="${seckill.image}" alt=""/></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="fr itemInfo-wrap">
                         <div class="sku-name">
@@ -100,11 +100,11 @@
 </div>
 
 </body>
-<script type="text/javascript" th:src="@{../../lib/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/jquery.cookie.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/countdown.js}"></script>
-<script type="text/javascript" th:src="@{../../js/seckill_detail.js}"></script>
+<script type="text/javascript" th:src="@{/lib/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/jquery.cookie.js}"></script>
+<script type="text/javascript" th:src="@{/lib/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/countdown.js}"></script>
+<script type="text/javascript" th:src="@{/js/seckill_detail.js}"></script>
 <script type="text/javascript" th:inline="javascript">
     $(function () {
         //使用表达式传入参数

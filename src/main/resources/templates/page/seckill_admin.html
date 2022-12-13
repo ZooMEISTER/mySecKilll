@@ -19,21 +19,26 @@
             }
         )
     </script>
-<!--    <script th:inline="javascript">-->
-<!--        //单击删除按钮 delSeckillEventID-->
-<!--        function deleteSeckillEvent(){-->
-<!--            var a = confirm("你确定要删除此活动吗")-->
-<!--            // if(a == true){-->
-<!--            //     $.ajax({-->
-<!--            //             url:"/seckill/delSeckillEvent",-->
-<!--            //         }-->
-<!--            //     )-->
-<!--            // }-->
-<!--            // else{-->
-<!--            //-->
-<!--            // }-->
-<!--        }-->
-<!--    </script>-->
+    <script type="text/javascript">
+        //单击删除按钮 delSeckillEventID
+        function deleteSeckillEvent(delEventNO){
+            var a = confirm("你确定要删除此活动吗")
+            if(a == true){
+                //let xhr = new XMLHttpRequest()  //类似于开启用户代理
+                // var delURL = '/seckill/' + delEventNO + '/delSeckillEventBy/'
+                // alert("delURL")
+                //初始化，请求了代理对象
+                // console.log(xhr.readyState) //0, UNSENT
+                // xhr.open('get', delURL)    //类似于输入地址与方法
+                // //调用了open方法，建立了客户端与服务端的特定端口的连接
+                // console.log(xhr.readyState) //1, OPENED
+                // xhr.send(null)  // 类似于按下确认键, 参数为请求体
+            }
+            // else{
+            //
+            // }
+        }
+    </script>
 </head>
 <body>
 
@@ -41,9 +46,10 @@
     <!-- header -->
     <div th:replace="public/header :: header"></div>
 
+<!--    <p th:text="${userphone}">-->
     <div>
         <h1>
-            欢迎登录！管理员<p th:text="${userphone}"></p>
+            欢迎登录！管理员</p>
         </h1>
 
     </div>
@@ -72,10 +78,10 @@
                         <span style="float:left;font-size: 13px;">结束时间：[[${#dates.format(item.endTime, 'yyyy-MM-dd HH:mm:ss')}]]</span>
                     </div>
                     <div class="buy">
-                        <a th:href="'/seckill/' + ${item.seckillId} + '/delSeckillEventBy/' + ${userphone}" target="_self">
+<!--                        <button style="width:100%; background-color: red" class="btn btn-success" th:onclick="deleteSeckillEvent('[[${item.seckillId}]]')">删除</button>-->
+                        <a th:href="'/seckill/' + ${item.seckillId} + '/delSeckillEvent/'" target="_self">  <!--+ ${userphone}-->
 <!--                            <button style="width:100%" class="btn btn-success">立即抢购</button>-->
                             <button style="width:100%; background-color: red" class="btn btn-success">删除</button>
-<!--                            <button style="width:100%" class="btn btn-success" onclick="deleteSeckillEvent()">删除</button>-->
                         </a>
 
                     </div>

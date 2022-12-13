@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>秒杀商品列表页</title>
-    <link rel="stylesheet" th:href="@{../../lib/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../lib/font/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/seckill.css}"/>
-    <link rel="stylesheet" th:href="@{../../css/public.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/seckill.css}"/>
+    <link rel="stylesheet" th:href="@{/css/public.css}"/>
 </head>
 <body>
 
@@ -45,7 +45,7 @@
                         <span style="float:left;font-size: 13px;">结束时间：[[${#dates.format(item.endTime, 'yyyy-MM-dd HH:mm:ss')}]]</span>
                     </div>
                     <div class="buy">
-                        <a th:href="'/seckill/' + ${item.seckillId} + '/detail'" target="_blank">
+                        <a th:href="'/seckill/' + ${item.seckillId} + '/detail/' + ${userphone}" target="_blank">
                             <button style="width:100%" class="btn btn-success">立即抢购</button>
                         </a>
                     </div>
@@ -60,9 +60,9 @@
 </div>
 
 </body>
-<script type="text/javascript" th:src="@{../../lib/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/jquery.cookie.js}"></script>
-<script type="text/javascript" th:src="@{../../lib/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/jquery.cookie.js}"></script>
+<script type="text/javascript" th:src="@{/lib/bootstrap.min.js}"></script>
 <script type="text/javascript">
     //cookie操作,储存登录用户的电话号码
     $(function (){

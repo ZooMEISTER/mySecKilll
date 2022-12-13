@@ -33,6 +33,9 @@ public class Seckill implements Serializable {
 
     private long stockCount; //剩余库存数量
 
+    private int ageLimit;
+    private int workLimit;
+
     public long getSeckillId() {
         return seckillId;
     }
@@ -103,6 +106,22 @@ public class Seckill implements Serializable {
 
     public void setStockCount(long stockCount) {
         this.stockCount = stockCount;
+    }
+
+    public int getAgeLimit() {
+        return ageLimit;
+    }
+
+    public void setAgeLimit(int ageLimit) {
+        this.ageLimit = ageLimit;
+    }
+
+    public int getWorkLimit() {
+        return workLimit;
+    }
+
+    public void setWorkLimit(int workLimit) {
+        this.workLimit = workLimit;
     }
 
     @Override

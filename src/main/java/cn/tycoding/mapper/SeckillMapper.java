@@ -28,7 +28,10 @@ public interface SeckillMapper {
      */
     Seckill findById(long id);
 
-    //寻找用户
+    //查找单个用户
+    UserBean findUserByPhone(long userphone);
+
+    //寻找所有用户
     List<UserBean> findAllUsers();
 
     //注册时插入用户
@@ -37,7 +40,7 @@ public interface SeckillMapper {
     //管理员删除活动
     int delSeckillEvent(@Param("delEventNo") Long delEventNo);
 
-    int addNewSeckillEvent(@Param("newEventNo") int newEventNo, @Param("eventName") String eventName, @Param("eventOriPrice") int eventOriPrice, @Param("eventDiscountPrice") int eventDiscountPrice, @Param("eventStockCount") int eventStockCount, @Param("newStartTime_TS") Timestamp eventStartTime, @Param("newEndTime_TS") Timestamp eventEndTime);
+    int addNewSeckillEvent(@Param("newEventNo") int newEventNo, @Param("eventName") String eventName, @Param("eventOriPrice") int eventOriPrice, @Param("eventDiscountPrice") int eventDiscountPrice, @Param("eventStockCount") int eventStockCount, @Param("newStartTime_TS") Timestamp eventStartTime, @Param("newEndTime_TS") Timestamp eventEndTime, @Param("eventAgeLimit") int eventAgeLimit, @Param("eventWorkLimit") int eventWorkLimit);
 
     /**
      * 减库存。

@@ -185,9 +185,9 @@ public class SeckillController{
 //    }
 
     //映射到秒杀活动删除
-    @RequestMapping("/{seckillId}/delSeckillEventBy/{userphone}")
+    @RequestMapping("/{seckillId}/delSeckillEvent") // /{userphone}
     public String delSeckillEvent(@PathVariable("seckillId") Long seckillId,
-                                  @PathVariable("userphone") String userphone,
+//                                  @PathVariable("userphone") String userphone,
                                   Model model){
         System.out.println("删除活动" + seckillId);
 
@@ -200,7 +200,7 @@ public class SeckillController{
         redisTemplate.delete(key);  //先清空redis缓存
         List<Seckill> list = seckillService.findAll();
         model.addAttribute("list", list);
-        model.addAttribute("userphone", userphone);
+//        model.addAttribute("userphone", userphone);
         return "page/seckill_admin";
     }
 
@@ -218,6 +218,8 @@ public class SeckillController{
                                     @RequestParam("eventStockCount") int eventStockCount,
                                     @RequestParam("eventStartTime") String eventStartTime,
                                     @RequestParam("eventEndTime") String eventEndTime,
+                                    @RequestParam("eventAgeLimit") int eventAgeLimit,
+                                    @RequestParam("eventWorkLimit") int eventWorkLimit,
                                     Model model){
         System.out.println("add new seckill event");
         System.out.println(eventName + " " + eventOriPrice + " " + eventDiscountPrice + " " + eventStockCount + " " + eventStartTime + " " + eventEndTime);
@@ -255,7 +257,7 @@ public class SeckillController{
             e.printStackTrace();
         }
 
-        int t = seckillMapper.addNewSeckillEvent(newEventNo,eventName,eventOriPrice,eventDiscountPrice,eventStockCount,newStartTime_TS, newEndTime_TS);
+        int t = seckillMapper.addNewSeckillEvent(newEventNo,eventName,eventOriPrice,eventDiscountPrice,eventStockCount,newStartTime_TS, newEndTime_TS,eventAgeLimit,eventWorkLimit);
 
 
         redisTemplate.delete(key);  //先清空redis缓存
@@ -287,17 +289,29 @@ public class SeckillController{
         return seckillService.findById(id);
     }
 
-    @RequestMapping("/{seckillId}/detail")
-    public String detail(@PathVariable("seckillId") Long seckillId, Model model) {
+    @RequestMapping("/{seckillId}/detail/{userphone}")
+    public String detail(@PathVariable("seckillId") Long seckillId, @PathVariable("userphone") Long userphone, Model model) {
         if (seckillId == null) {
             return "page/seckill";
         }
         Seckill seckill = seckillService.findById(seckillId);
+        UserBean loggedUser = seckillMapper.findUserByPhone(userphone);
+        loggedUser.printSelf();
         model.addAttribute("seckill", seckill);
-        if (seckill == null) {
-            return "page/seckill";
+
+        if(loggedUser.getUserAge() < seckill.getAgeLimit()){
+            System.out.println("年龄资格不符");
+            return "page/errorPage";
         }
-        return "page/seckill_detail";
+        else if(seckill.getWorkLimit() == 1 && loggedUser.getUserWorkcondition() != 1){
+            System.out.println("工作资格不符");
+            return "page/errorPage";
+        }
+        else{
+            return "page/seckill_detail";
+        }
+
+        //return "page/errorPage";
     }
 
     @ResponseBody
